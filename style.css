@@ -1,0 +1,23 @@
+body{
+    height: 100%;
+    background-color: antiquewhite;
+}
+#game {
+text-align: center;
+background-color: antiquewhite;
+}
+h1{
+    background-color: teal;
+    color: white;
+}
+#resultsummery, #lbltotalGame{
+    text-align: justify;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: bold;
+}
+#resetbtn{
+    background-color: teal;
+    color: white;
+    font-size: 20px;
+}

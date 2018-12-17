@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors Part 1</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+  <div id="game">
+    <h1>Rock Paper Scissors Game</h1>
+    <h2>Enter your choice : <label id="userSelection"></label></h2>
+     
+    <h2>Computer Selected : <label id="computerSelected"></label></h2>
+
+    <h2 id="result" style="color:red"></h2>
+
+    <button id="resetbtn" title="Reset" onclick="resetGame()">Reset</button>
+    <br><br>
+
+    <label id="resultsummery"></label><br> <br>
+    <label id="lbltotalGame"></label>
+
+
+  </div>
+
+  <script type="text/javascript">
+    // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
+    var computerChoices = ["r", "p", "s"];
+    var totalGame = 0;
+    var tieGame = 0;
+    var winGame = 0;
+    var looseGame = 0;
+    
+
+    // This function is run whenever the user presses a key.
+    document.onkeyup = function (event) {
+      var result = -2;
+      var randomNum=0;
+      // Determines which key was pressed.
+      var userGuess = event.key;
+      if (!((userGuess == "r") || (userGuess == "p") || (userGuess == "s"))) {
+        alert("Please Enter r for Rock or p for Papper or s for Scissors");
+        return 0;
+      }
+      // Randomly chooses a choice from the options array. This is the Computer's guess.
+      randomNum=Math.random();
+      var computerGuess = computerChoices[Math.floor(randomNum * computerChoices.length)];
+
+      // Alerts the key the user pressed (userGuess).
+      document.getElementById("userSelection").innerHTML = userGuess;
+      //alert("User guess: " + userGuess);
+      document.getElementById("computerSelected").innerHTML = computerGuess;
+      // Alerts the Computer's guess.
+      // alert("Computer guess: " + computerGuess);
+      if (userGuess == 'r') {
+        if (computerGuess == 'r') {
+          result = 0;
+        }
+        if (computerGuess == 's') {
+          result = 1;
+        }
+        if (computerGuess == 'p') {
+
+          result = -1;
+        }
+      }
+      else if (userGuess == 's') {
+        if (computerGuess == 'r') {
+
+          result = -1;
+        }
+        if (computerGuess == 's') {
+          result = 0;
+        }
+        if (computerGuess == 'p') {
+
+          result = 1;
+        }
+      }
+      else if (userGuess == 'p') {
+        if (computerGuess == 'r') {
+
+          result = 1;
+        }
+        if (computerGuess == 's') {
+          result = -1;
+        }
+        if (computerGuess == 'p') {
+
+          result = 0;
+        }
+      }
+
+
+      if (result == 0) {
+        document.getElementById("result").innerHTML = "Game Tie";
+        totalGame = totalGame + 1;
+        tieGame = tieGame + 1;
+
+      }
+      else if (result == 1) {
+        document.getElementById("result").innerHTML = "You won";
+        totalGame = totalGame + 1;
+        winGame = winGame + 1;
+      }
+      else if (result == -1) {
+        document.getElementById("result").innerHTML = "You lost";
+        totalGame = totalGame + 1;
+        looseGame = looseGame + 1;
+      }
+      document.getElementById("resultsummery").innerHTML = "You won:" + winGame + "<br> <br> You lost:" + looseGame + "<br> <br> Tie Games:" + tieGame;
+      document.getElementById("lbltotalGame").innerHTML = "Total Game Played:" + totalGame;
+    };
+    function resetGame() {
+      totalGame = 0;
+      tieGame = 0;
+      winGame = 0;
+      looseGame = 0;
+      document.getElementById("result").innerHTML = "";
+      document.getElementById("resultsummery").innerHTML = "";
+      document.getElementById("userSelection").innerHTML = "";
+
+      //alert("User guess: " + userGuess);
+      document.getElementById("computerSelected").innerHTML = "";
+      document.getElementById("lbltotalGame").innerHTML = "";
+    };
+
+  </script>
+
+</body>
+
+</html>
